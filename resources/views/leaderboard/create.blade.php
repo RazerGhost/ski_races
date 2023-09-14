@@ -6,17 +6,27 @@
     </x-slot>
 
     <div class="py-12">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('') }}">
+                    <form method="POST" action="{{ route('Racerboard.store') }}">
                         @csrf
 
                         <!-- Voornaam -->
                         <div class="mt-4">
                             <x-input-label for="voornaam" :value="__('voornaam')" />
-                            <x-text-input id="voornaam" class="block mt-1 w-full" type="text" voornaam="voornaam"
+                            <x-text-input id="voornaam" class="block mt-1 w-full" type="text" name="voornaam"
                                 :value="old('voornaam')" required autofocus autocomplete="voornaam" />
+                            <x-input-error :messages="$errors->get('voornaam')" class="mt-2" />
                         </div>
 
                         <!-- Achternaam -->
@@ -24,6 +34,7 @@
                             <x-input-label for="achternaam" :value="__('achternaam')" />
                             <x-text-input id="achternaam" class="block mt-1 w-full" type="text" name="achternaam"
                                 :value="old('achternaam')" required autocomplete="achternaam" />
+                            <x-input-error :messages="$errors->get('achternaam')" class="mt-2" />
                         </div>
 
                         <!-- Geslacht -->
@@ -41,12 +52,12 @@
                                 name="geboortedatum" :value="old('geboortedatum')" required autocomplete="geboortedatum" />
                         </div>
 
-                        <!-- DOB -->
-                        <div class="mt-4">
+                        <!-- Categorie -->
+                        {{-- <div class="mt-4">
                             <x-input-label for="Categorie" :value="__('Categorie')" />
                             <x-text-input id="Categorie" class="block mt-1 w-full" type="text" name="Categorie"
                                 :value="old('Categorie')" required autocomplete="Categorie" />
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">

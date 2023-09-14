@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\RaceBoardViewController;
+use App\Http\Controllers\RacerboardViewController;
+use App\Http\Controllers\RacerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/raceboard', [RaceBoardViewController::class, 'index'])->name('raceboard.index');
+    Route::get('/leaderboard', [RacerboardViewController::class, 'index'])->name('Leaderboard.index');
+    Route::get('/leaderboard/addracer', [RacerController::class, 'addracer'])->name('Racerboard.addracer');
+    Route::post('/leaderboard', [RacerController::class, 'store'])->name('Racerboard.store');
+    Route::delete('/leaderboard/{racer}', [RacerController::class, 'destroy'])->name('Racerboard.destroy');
+    Route::get('/leaderboard/{racer}/edit', [RacerController::class, 'edit'])->name('Racerboard.edit');
 });
 
 require __DIR__.'/auth.php';
