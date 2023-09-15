@@ -86,12 +86,12 @@
                             </tbody>
                         </table>
                     </div>
+
                     {{-- <div class="p-6 text-gray-900 dark:text-gray-100">
                         {{ __('Drie ronde race') }}
                     </div>
-
                     <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                        href="{{ route('Leaderboard.addracer') }}">
+                        href="{{ route('Racerboard.addracer') }}">
                         {{ __('Voeg nieuwe tijden toe') }}
                     </a> 
                     <div class="relative overflow-x-auto">
@@ -117,7 +117,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Leaderboard as $TripleLapTime)
+                                @foreach ($Tripleboard as $TripleLapTimes)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -139,13 +139,13 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __('Snelste tijd') }}
                     </div> --}}
 
-                    {{-- <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                        href="{{ route('Leaderboard.addracer') }}">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        {{ __('Snelste tijd') }}
+                    </div>
+                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        href="{{ route('Doubleboard.addDBLlaptimes') }}">
                         {{ __('Voeg nieuwe tijden toe') }}
                     </a> 
                     <div class="relative overflow-x-auto">
@@ -168,7 +168,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Leaderboard as $FastestLap)
+                                @foreach ($Doubleboard as $FastestLap)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -191,10 +191,10 @@
 
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         {{ __('Samengevoegde tijd') }}
-                    </div> --}}
+                    </div>
 
-                    {{-- <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                        href="{{ route('Leaderboard.addracer') }}">
+                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        href="{{ route('Doubleboard.addDBLlaptimes') }}">
                         {{ __('Voeg nieuwe tijden toe') }}
                     </a> 
                     <div class="relative overflow-x-auto">
@@ -217,7 +217,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Leaderboard as $AverageLap)
+                                @foreach ($Doubleboard as $AverageLap)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -236,7 +236,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

@@ -52,13 +52,6 @@
                                 name="geboortedatum" :value="old('geboortedatum')" required autocomplete="geboortedatum" />
                         </div>
 
-                        <!-- Categorie -->
-                        {{-- <div class="mt-4">
-                            <x-input-label for="Categorie" :value="__('Categorie')" />
-                            <x-text-input id="Categorie" class="block mt-1 w-full" type="text" name="Categorie"
-                                :value="old('Categorie')" required autocomplete="Categorie" />
-                        </div> --}}
-
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">
                                 {{ __('Voeg Racer toe') }}

@@ -18,14 +18,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('Racerboard.store') }}">
+                    <form method="POST" action="{{ route('Racerboard.update', ['racer' => $Racerboard->id]) }}">
                         @csrf
-
                         <!-- Voornaam -->
                         <div class="mt-4">
                             <x-input-label for="voornaam" :value="__('voornaam')" />
                             <x-text-input id="voornaam" class="block mt-1 w-full" type="text" name="voornaam"
-                                :value="old('voornaam')" required autofocus autocomplete="voornaam" />
+                                :value="$Racerboard->voornaam" :placeholder="$Racerboard->voornaam" required autofocus autocomplete="voornaam" />
                             <x-input-error :messages="$errors->get('voornaam')" class="mt-2" />
                         </div>
 
@@ -33,7 +32,7 @@
                         <div class="mt-4">
                             <x-input-label for="achternaam" :value="__('achternaam')" />
                             <x-text-input id="achternaam" class="block mt-1 w-full" type="text" name="achternaam"
-                                :value="old('achternaam')" required autocomplete="achternaam" />
+                                :value="$Racerboard->achternaam" :placeholder="$Racerboard->achternaam" required autocomplete="achternaam" />
                             <x-input-error :messages="$errors->get('achternaam')" class="mt-2" />
                         </div>
 
@@ -41,7 +40,7 @@
                         <div class="mt-4">
                             <x-input-label for="geslacht" :value="__('geslacht')" />
                             <x-text-input id="geslacht" class="block mt-1 w-full" type="text" name="geslacht"
-                                :value="old('geslacht')" required autocomplete="geslacht" />
+                                :value="$Racerboard->geslacht" :placeholder="$Racerboard->geslacht" required autocomplete="geslacht" />
                             <x-input-error :messages="$errors->get('geslacht')" class="mt-2" />
                         </div>
 
@@ -49,7 +48,8 @@
                         <div class="mt-4">
                             <x-input-label for="geboortedatum" :value="__('geboortedatum')" />
                             <x-text-input id="geboortedatum" class="block mt-1 w-full" type="date"
-                                name="geboortedatum" :value="old('geboortedatum')" required autocomplete="geboortedatum" />
+                                name="geboortedatum" :value="$Racerboard->geboortedatum" :placeholder="$Racerboard->geboortedatum" required
+                                autocomplete="geboortedatum" />
                         </div>
 
                         <!-- Categorie -->
@@ -58,10 +58,9 @@
                             <x-text-input id="Categorie" class="block mt-1 w-full" type="text" name="Categorie"
                                 :value="old('Categorie')" required autocomplete="Categorie" />
                         </div> --}}
-
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">
-                                {{ __('Voeg Racer toe') }}
+                                {{ __('Vervang Racer Data') }}
                             </x-primary-button>
                         </div>
                     </form>

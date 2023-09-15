@@ -12,7 +12,7 @@ class RacerController extends Controller
 {
     public function addracer(): View
     {
-        return view('leaderboard.create');
+        return view('leaderboard.addracer',);
     }
 
     public function store(Request $request): RedirectResponse
@@ -38,6 +38,45 @@ class RacerController extends Controller
 
         return redirect()->route('Leaderboard.index');
     }
+
+    public function edit($id): View
+    {
+        $Racerboard = Racerboard::find($id);
+        return view('Leaderboard.editracer', compact('Racerboard'));
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        // Find the record with the given id
+        $Racerboard = Racerboard::find($id);
+        // Validate the form data 
+        $request->validate([
+            'voornaam' => 'required',
+            'achternaam' => 'required',
+            'geslacht' => 'required',
+            'geboortedatum' => 'required',
+        ]);
+        // Check if the record exists
+        if (!$Racerboard) {
+            return redirect()->route('Leaderboard.index');
+        }
+
+        $birthdate = $request->geboortedatum;
+        $age = $this->calculateAge($birthdate);
+        $category = $this->determineCategory($age);
+
+        // Update the record with the new data
+        $Racerboard->update([
+            'voornaam' => $request->voornaam,
+            'achternaam' => $request->achternaam,
+            'geslacht' => $request->geslacht,
+            'geboortedatum' => $request->geboortedatum,
+            'categorie' => $category,
+        ]);
+
+        return redirect()->route('Leaderboard.index');
+    }
+
 
     private function calculateAge($birthdate)
     {
@@ -66,13 +105,7 @@ class RacerController extends Controller
             return 'Te oud';
         }
     }
-
-    public function edit($id): View
-    {
-        $Racerboard = Racerboard::find($id);
-        return view('leaderboard.edit', compact('Racerboard'));
-    }
-
+    
     public function destroy($id): RedirectResponse
     {
         $Racerboard = Racerboard::find($id);

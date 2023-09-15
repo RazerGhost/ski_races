@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\RacerboardViewController;
+use App\Http\Controllers\BoardpageViewController;
 use App\Http\Controllers\RacerController;
+use App\Http\Controllers\DoublelapController;
+use App\Http\Controllers\TriplelapController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,11 +31,29 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/leaderboard', [RacerboardViewController::class, 'index'])->name('Leaderboard.index');
+    // Routes for the Leaderboard
+    Route::get('/leaderboard', [BoardpageViewController::class, 'index'])->name('Leaderboard.index');
+    
+    // Routes for the Racer Table
     Route::get('/leaderboard/addracer', [RacerController::class, 'addracer'])->name('Racerboard.addracer');
-    Route::post('/leaderboard', [RacerController::class, 'store'])->name('Racerboard.store');
+    Route::post('/leaderboard/addracer', [RacerController::class, 'store'])->name('Racerboard.store');
+    Route::get('/leaderboard/{racer}/editracer', [RacerController::class, 'edit'])->name('Racerboard.edit');
+    Route::post('/leaderboard/{racer}/update', [RacerController::class, 'update'])->name('Racerboard.update');
     Route::delete('/leaderboard/{racer}', [RacerController::class, 'destroy'])->name('Racerboard.destroy');
-    Route::get('/leaderboard/{racer}/edit', [RacerController::class, 'edit'])->name('Racerboard.edit');
+
+    // Routes for the Doublelap Table
+    Route::get('/leaderboard/addDBLlaptimes', [DoublelapController::class, 'addDBLlaptimes'])->name('Doubleboard.addDBLlaptimes');
+    Route::post('/leaderboard/addDBLlaptimes', [DoublelapController::class, 'store'])->name('Doubleboard.store');
+    Route::get('/leaderboard/{doublelap}/editdoublelaptimes', [DoublelapController::class, 'edit'])->name('Doubleboard.edit');
+    Route::post('/leaderboard/{doublelap}/update', [DoublelapController::class, 'update'])->name('Doubleboard.update');
+    Route::delete('/leaderboard/{doublelap}', [DoublelapController::class, 'destroy'])->name('Doubleboard.destroy');
+
+    // Routes for the Triplelap Table
+    Route::get('/leaderboard/addTRPLlaptimes', [TriplelapController::class, 'addTRPLlaptimes'])->name('Tripleboard.addTRPLlaptimes');
+    Route::post('/leaderboard/addTRPLlaptimes', [TriplelapController::class, 'store'])->name('Tripleboard.store');
+    Route::get('/leaderboard/{triplelap}/edittriplelaptimes', [TriplelapController::class, 'edit'])->name('Tripleboard.edit');
+    Route::post('/leaderboard/{triplelap}/update', [TriplelapController::class, 'update'])->name('Tripleboard.update');
+    Route::delete('/leaderboard/{triplelap}', [TriplelapController::class, 'destroy'])->name('Tripleboard.destroy');
 });
 
 require __DIR__.'/auth.php';

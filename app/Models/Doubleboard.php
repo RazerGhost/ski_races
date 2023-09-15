@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Triplelapboard extends Model
+class Doubleboard extends Model
 {
-    protected $table = 'triplelap';
+
+    protected $table = 'doublelap';
     protected $fillable = [
         'racer_id',
         'firstlap',
         'secondlap',
-        'thirdlap',
     ];
 }
