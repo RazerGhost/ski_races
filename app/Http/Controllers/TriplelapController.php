@@ -17,14 +17,14 @@ class DoublelapController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'rugnummer' => 'required',
+            'racer_id' => 'required|exists:racers,id',
             'firstlap' => 'required',
             'secondlap' => 'required',
             'thirdlap' => 'required',
         ]);
 
         Tripleboard::create([
-            'racer_id' => $request->rugnummer,
+            'racer_id' => $request->racer_id,
             'firstlap' => $request->firstlap,
             'secondlap' => $request->secondlap,
             'thirdlap' => $request->thirdlap,
@@ -45,7 +45,7 @@ class DoublelapController extends Controller
         $Tripleboard = Tripleboard::find($id);
         // Validate the form data 
         $request->validate([
-            'rugnummer' => 'required',
+            'racer_id' => 'required',
             'firstlap' => 'required',
             'secondlap' => 'required',
             'thirdlap' => 'required',
@@ -57,7 +57,7 @@ class DoublelapController extends Controller
 
         // Update the record with the new data
         $Tripleboard->update([
-            'racer_id' => $request->rugnummer,
+            'racer_id' => $request->racer_id,
             'firstlap' => $request->firstlap,
             'secondlap' => $request->secondlap,
             'thirdlap' => $request->thirdlap,

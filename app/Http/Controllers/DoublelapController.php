@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Doubleboard;
-use App\Models\Racerboard;
 
 class DoublelapController extends Controller
 {
@@ -18,13 +17,13 @@ class DoublelapController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'rugnummer' => 'required',
+            'racer_id' => 'required|exists:racers,id',
             'firstlap' => 'required',
             'secondlap' => 'required',
         ]);
 
         Doubleboard::create([
-            'racer_id' => $request->rugnummer,
+            'racer_id' => $request->racer_id,
             'firstlap' => $request->firstlap,
             'secondlap' => $request->secondlap,
         ]);
@@ -44,7 +43,7 @@ class DoublelapController extends Controller
         $Doubleboard = Doubleboard::find($id);
         // Validate the form data 
         $request->validate([
-            'rugnummer' => 'required',
+            'racer_id' => 'required',
             'firstlap' => 'required',
             'secondlap' => 'required',
         ]);
@@ -56,7 +55,7 @@ class DoublelapController extends Controller
 
         // Update the record with the new data
         $Doubleboard->update([
-            'racer_id' => $request->rugnummer,
+            'racer_id' => $request->racer_id,
             'firstlap' => $request->firstlap,
             'secondlap' => $request->secondlap,
         ]);
