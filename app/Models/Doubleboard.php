@@ -12,5 +12,6 @@ class Doubleboard extends Model
         'racer_id',
         'firstlap',
         'secondlap',
+        'averagelap',
     ];
 }

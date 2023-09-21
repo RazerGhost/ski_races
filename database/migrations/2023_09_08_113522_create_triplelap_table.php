@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('triplelap', function (Blueprint $table) {
             $table->id();
             $table->foreignId('racer_id')->constrained('racers');
-            $table->string('firstlap');
-            $table->string('secondlap');
-            $table->string('thirdlap');
+            $table->decimal('firstlap' , 4, 2);
+            $table->decimal('secondlap', 4, 2);
+            $table->decimal('thirdlap' , 4, 2);
             $table->timestamps();
         });
     }

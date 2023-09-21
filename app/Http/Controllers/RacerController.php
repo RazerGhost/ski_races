@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Carbon\Carbon;
 use App\Models\Racerboard;
+use App\Models\Doubleboard;
+use App\Models\Tripleboard;
 
 class RacerController extends Controller
 {
@@ -49,7 +51,7 @@ class RacerController extends Controller
     {
         // Find the record with the given id
         $Racerboard = Racerboard::find($id);
-        // Validate the form data 
+        // Validate the form data
         $request->validate([
             'voornaam' => 'required',
             'achternaam' => 'required',
@@ -105,10 +107,15 @@ class RacerController extends Controller
             return 'Te oud';
         }
     }
-    
+
     public function destroy($id): RedirectResponse
     {
         $Racerboard = Racerboard::find($id);
+        $Doubleboard = Doubleboard::where('racer_id', $id);
+        $Tripleboard = Tripleboard::where('racer_id', $id);
+
+        $Doubleboard->delete();
+        $Tripleboard->delete();
         $Racerboard->delete();
 
         return redirect()->route('Leaderboard.index');
