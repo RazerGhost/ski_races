@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Tripleboard;
 
-class DoublelapController extends Controller
+class TriplelapController extends Controller
 {
     public function addTRPLlaptimes(): View
     {
@@ -43,7 +43,7 @@ class DoublelapController extends Controller
     {
         // Find the record with the given id
         $Tripleboard = Tripleboard::find($id);
-        // Validate the form data 
+        // Validate the form data
         $request->validate([
             'racer_id' => 'required',
             'firstlap' => 'required',

@@ -20,8 +20,14 @@ class DoublelapController extends Controller
     {
         $request->validate([
             'racer_id' => 'required|exists:racers,id',
-            'firstlap' => 'required',
-            'secondlap' => 'required',
+            'firstlap' => [
+                'required' => 'required',
+                'max' => 'max:5,5',
+            ],
+            'secondlap' => [
+                'required' => 'required',
+                'max' => 'max:5,5',
+            ],
         ]);
 
         $firstlap = $request->firstlap;
@@ -51,8 +57,14 @@ class DoublelapController extends Controller
         // Validate the form data
         $request->validate([
             'racer_id' => 'required|exists:racers,id',
-            'firstlap' => 'required',
-            'secondlap' => 'required',
+            'firstlap' => [
+                'required' => 'required',
+                'max' => 'max:5,5',
+            ],
+            'secondlap' => [
+                'required' => 'required',
+                'max' => 'max:5,5',
+            ],
         ]);
         // Check if the record exists
         if (!$Doubleboard) {
