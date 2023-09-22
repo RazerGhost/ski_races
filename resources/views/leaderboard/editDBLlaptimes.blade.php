@@ -11,10 +11,15 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('Doubleboard.update', ['doublelap' => $Doubleboard->id]) }}">
                         @csrf
-                        <!-- Voornaam -->
+                        <!-- Rugnummer -->
                         <div class="mt-4">
                             <x-input-label for="racer_id" :value="__('racer_id')" />
-                            <x-text-input id="racer_id" class="mt-1 block w-full" type="text" name="racer_id" :value="$Doubleboard->racer_id" :placeholder="$Doubleboard->racer_id" required autofocus autocomplete="racer_id" />
+                            <select id="racer_id" name="racer_id" class="mt-1 block w-full text-black" required autofocus autocomplete="racer_id">
+                                <option value="">Select Race ID</option>
+                                @foreach ($Racerboard as $Racer)
+                                    <option value="{{ $Racer->id }}">{{ $Racer->id }} {{ $Racer->voornaam }} {{ $Racer->achternaam }}</option>
+                                @endforeach
+                            </select>
                             <x-input-error :messages="$errors->get('racer_id')" class="mt-2" />
                         </div>
 

@@ -1,0 +1,65 @@
+{{-- <div class="p-6 text-gray-900 dark:text-gray-100">
+                            {{ __('Drie ronde race') }}
+                    </div>
+                    <a href="{{ route('Racerboard.addracer') }}">
+                        {{ __('Voeg nieuwe tijden toe') }}
+                    </a>
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('id') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Rugnummer') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Eerste ronde') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Tweede Ronde') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Derde Ronde') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Acties') }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($Tripleboard as $TripleLapTime)
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ __($TripleLapTime->id) }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ __($TripleLapTime->racer_id) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ __($TripleLapTime->firstlap) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ __($TripleLapTime->secondlap) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ __($TripleLapTime->thirdlap) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('Tripleboard.editTRPLlaptimes', $TripleLapTime->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                            {{ __('Edit') }}
+                                        </a>
+                                        <form action="{{ route('Tripleboard.destroy', $TripleLapTime->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div> --}}
