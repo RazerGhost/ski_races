@@ -7,7 +7,7 @@ To recreate this Laravel repository, you can follow these general steps:
 
     ```bash
 
-    cd BaroBank
+    cd ski_races
     composer install
 
     ```
