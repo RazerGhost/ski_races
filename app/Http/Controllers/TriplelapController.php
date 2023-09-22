@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Tripleboard;
+use App\Models\Racerboard;
 
 class TriplelapController extends Controller
 {
     public function addTRPLlaptimes(): View
     {
-        return view('leaderboard.addTRPLlaptimes');
+        $Racerboard = Racerboard::all();
+        return view('leaderboard.addTRPLlaptimes', compact('Racerboard'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -35,8 +37,9 @@ class TriplelapController extends Controller
 
     public function edit($id): View
     {
+        $Racerboard = Racerboard::all();
         $Tripleboard = Tripleboard::find($id);
-        return view('Leaderboard.editTRPLlaptimes', compact('Tripleboard'));
+        return view('Leaderboard.editTRPLlaptimes', compact('Tripleboard', 'Racerboard'));
     }
 
     public function update(Request $request, $id): RedirectResponse
