@@ -46,8 +46,9 @@ class DoublelapController extends Controller
 
     public function edit($id): View
     {
+        $Racerboard = Racerboard::all();
         $Doubleboard = Doubleboard::find($id);
-        return view('Leaderboard.editDBLlaptimes', compact('Doubleboard'));
+        return view('Leaderboard.editDBLlaptimes', compact('Doubleboard', 'Racerboard'));
     }
 
     public function update(Request $request, $id): RedirectResponse
