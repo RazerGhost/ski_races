@@ -13,7 +13,7 @@ class TriplelapController extends Controller
     public function addTRPLlaptimes(): View
     {
         $Racerboard = Racerboard::all();
-        return view('leaderboard.addTRPLlaptimes', compact('Racerboard'));
+        return view('leaderboard.add.addTRPLlaptimes', compact('Racerboard'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -37,9 +37,9 @@ class TriplelapController extends Controller
 
     public function edit($id): View
     {
-        $Racerboard = Racerboard::all();
         $Tripleboard = Tripleboard::find($id);
-        return view('Leaderboard.editTRPLlaptimes', compact('Tripleboard', 'Racerboard'));
+        $Racerboard = Racerboard::all();
+        return view('Leaderboard.edit.editTRPLlaptimes', compact('Tripleboard', 'Racerboard'));
     }
 
     public function update(Request $request, $id): RedirectResponse

@@ -13,7 +13,7 @@ class DoublelapController extends Controller
     public function addDBLlaptimes(): View
     {
         $Racerboard = Racerboard::all();
-        return view('leaderboard.addDBLlaptimes', compact('Racerboard'));
+        return view('leaderboard.add.addDBLlaptimes', compact('Racerboard'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -48,7 +48,7 @@ class DoublelapController extends Controller
     {
         $Racerboard = Racerboard::all();
         $Doubleboard = Doubleboard::find($id);
-        return view('Leaderboard.editDBLlaptimes', compact('Doubleboard', 'Racerboard'));
+        return view('Leaderboard.edit.editDBLlaptimes', compact('Doubleboard', 'Racerboard'));
     }
 
     public function update(Request $request, $id): RedirectResponse

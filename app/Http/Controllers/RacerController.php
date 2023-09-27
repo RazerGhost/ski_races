@@ -14,7 +14,7 @@ class RacerController extends Controller
 {
     public function addracer(): View
     {
-        return view('leaderboard.addracer',);
+        return view('leaderboard.add.addracer',);
     }
 
     public function store(Request $request): RedirectResponse
@@ -44,7 +44,7 @@ class RacerController extends Controller
     public function edit($id): View
     {
         $Racerboard = Racerboard::find($id);
-        return view('Leaderboard.editracer', compact('Racerboard'));
+        return view('Leaderboard.edit.editracer', compact('Racerboard'));
     }
 
     public function update(Request $request, $id): RedirectResponse

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Racerboard;
+use App\Models\Racesboard;
 use App\Models\Doubleboard;
 use App\Models\Tripleboard;
 
@@ -14,10 +15,17 @@ class BoardpageViewController extends Controller
     public function index()
     {
 
-        return view('leaderboard.index',)
+        return view('leaderboard.index')
             ->with('Racerboard', Racerboard::all())
             ->with('Doubleboard', Doubleboard::all())
             ->with('Tripleboard', Tripleboard::all());
+    }
+
+    public function races()
+    {
+        return view('leaderboard.races')
+            ->with('Racerboard', Racerboard::all())
+            ->with('Races', Racesboard::all());
     }
 
     // Racer Table Filter
