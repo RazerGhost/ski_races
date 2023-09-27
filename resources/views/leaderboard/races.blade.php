@@ -198,6 +198,12 @@
                                     <td class="px-6 py-4">
                                         {{ __($Race->date) }}
                                     </td>
+                                    {{-- TODO Add links to pages to display table with the correct format and racers :) --}}
+                                    <td class="px-6 py-4">
+                                        <a href="{{''}}">
+
+                                        </a>
+                                    </td>
                                     <td class="px-6 py-4">
                                         @foreach ($Race->racers as $racer)
                                             {{ $racer }}
