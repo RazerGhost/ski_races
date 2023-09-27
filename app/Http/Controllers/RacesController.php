@@ -44,11 +44,11 @@ class RacesController extends Controller
         return redirect()->route('Leaderboard.races');
     }
 
-    public function editRace($id): View
+    public function edit($id): View
     {
         $Races = Racesboard::find($id);
         $Racerboard = Racerboard::all();
-        return view('Leaderboard.editRace', compact('Racerboard', 'Races'));
+        return view('Leaderboard.edit.editRace', compact('Racerboard', 'Races'));
     }
 
     public function update(Request $request, $id): RedirectResponse
