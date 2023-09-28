@@ -28,7 +28,6 @@ class RacesController extends Controller
             'racers' => 'required',
         ]);
 
-
         Racesboard::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -38,42 +37,10 @@ class RacesController extends Controller
             'racers' => $request->racers,
         ]);
 
-
-
         return redirect()->route('Leaderboard.races');
     }
 
-    public function edit($id): View
-    {
-        $Races = Racesboard::find($id);
-        $Racerboard = Racerboard::all();
-        return view('Leaderboard.edit.editRace', compact('Racerboard', 'Races'));
-    }
 
-    public function update(Request $request, $id): RedirectResponse
-    {
-        $Races = Racesboard::find($id);
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'format' => 'required',
-            'location' => 'required',
-            'date' => 'required',
-            'racers' => 'required',
-        ]);
-
-        $Races->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'format' => $request->format,
-            'location' => $request->location,
-            'date' => $request->date,
-            'racers' => $request->racers,
-        ]);
-
-        return redirect()->route('leaderboard.races');
-
-    }
 
     public function destroy($id): RedirectResponse
     {

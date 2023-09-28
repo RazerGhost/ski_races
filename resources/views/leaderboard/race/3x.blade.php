@@ -21,53 +21,6 @@
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <div class="flex items-center justify-between">
                                 <h2 class="text-lg font-semibold">{{ __('Deelnemers table') }}</h2>
-                                <button id="toggleFilters" class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                                    Filters
-                                </button>
-                            </div>
-                        </div>
-                        <div id="filterContainer" class="hidden">
-                            <!-- Filter Form for Deelnemers -->
-                            <div class="px-5">
-                                <form action="{{ route('Leaderboard.racerfilter') }}" method="POST" class="flex flex-wrap space-x-2">
-                                    @csrf
-                                    <div class="relative mt-2">
-                                        <input class="mt-1 rounded-md border px-2 py-1 text-black focus:border-blue-300 focus:outline-none focus:ring" type="text" name="voornaam" placeholder="Filter by Voornaam" value="{{ request('voornaam') }}">
-                                    </div>
-                                    <div class="relative mt-2">
-                                        <input class="mt-1 rounded-md border px-2 py-1 text-black focus:border-blue-300 focus:outline-none focus:ring" type="text" name="achternaam" placeholder="Filter by Achternaam" value="{{ request('achternaam') }}">
-                                    </div>
-                                    <div class="relative mt-2">
-                                        <select name="geslacht" class="mt-1 rounded-md border px-3 py-1 text-black focus:border-blue-300 focus:outline-none focus:ring">
-                                            <option value="">Geslacht</option>
-                                            <option value="Man" @if (request('geslacht') === 'Man') selected @endif>Man</option>
-                                            <option value="Vrouw" @if (request('geslacht') === 'Vrouw') selected @endif>Vrouw</option>
-                                        </select>
-                                    </div>
-                                    <div class="relative mt-2">
-                                        <input class="mt-1 rounded-md border px-2 py-1 text-black focus:border-blue-300 focus:outline-none focus:ring" type="date" name="geboortedatum" placeholder="Filter by Geboortedatum" value="{{ request('geboortedatum') }}">
-                                    </div>
-                                    <div class="relative mt-2">
-                                        <select class="mt-1 rounded-md border px-3 py-1 text-black focus:border-blue-300 focus:outline-none focus:ring" name="categorie">
-                                            <option value="">Filter by Categorie</option>
-                                            <option value="U8" @if (request('categorie') === 'U8') selected @endif>U8</option>
-                                            <option value="U10" @if (request('categorie') === 'U10') selected @endif>U10</option>
-                                            <option value="U12" @if (request('categorie') === 'U12') selected @endif>U12</option>
-                                            <option value="U14" @if (request('categorie') === 'U14') selected @endif>U14</option>
-                                            <option value="U16" @if (request('categorie') === 'U16') selected @endif>U16</option>
-                                            <option value="U18" @if (request('categorie') === 'U18') selected @endif>U18</option>
-                                            <option value="U21" @if (request('categorie') === 'U21') selected @endif>U21</option>
-                                        </select>
-                                    </div>
-                                    <div class="relative mt-2">
-                                        <button type="submit" class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">Apply Filters</button>
-                                    </div>
-                                    <div class="relative mt-2">
-                                        <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                                            <a href="{{ route('Leaderboard.reset') }}">{{ __('Reset Filters') }}</a>
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                         <div class="p-6">
@@ -139,16 +92,6 @@
                                     <a href="{{ route('Racerboard.addracer') }}">{{ __('Voeg een Deelnemer toe') }}</a>
                                 </button>
                             </div>
-                            <script>
-                                document.getElementById("toggleFilters").addEventListener("click", function() {
-                                    var filterContainer = document.getElementById("filterContainer");
-                                    if (filterContainer.classList.contains("hidden")) {
-                                        filterContainer.classList.remove("hidden");
-                                    } else {
-                                        filterContainer.classList.add("hidden");
-                                    }
-                                });
-                            </script>
                         </div>
                     </div>
                 </div>

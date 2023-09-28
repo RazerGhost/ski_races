@@ -64,8 +64,6 @@ Route::middleware('auth')->group(function () {
     // * Routes for the Race Table
     Route::get('/leaderboard/add/addRace', [RacesController::class, 'addRace'])->name('Racesboard.addRace');
     Route::post('/leaderboard/addRace', [RacesController::class, 'store'])->name('Racesboard.store');
-    Route::get('/leaderboard/edit/{race}/editRace', [RacesController::class, 'edit'])->name('Racesboard.edit');
-    Route::post('/leaderboard/{race}/update', [RacesController::class, 'update'])->name('Racesboard.update');
     Route::delete('/Racesboard/{race}', [RacesController::class, 'destroy'])->name('Racesboard.destroy');
 });
 

@@ -28,7 +28,7 @@
                         <!-- Geslacht -->
                         <div class="mt-4">
                             <x-input-label for="geslacht" :value="__('geslacht')" />
-                            <select name="geslacht" id="geslacht" :placeholder="$Racerboard - > geslacht" class="mt-1 block w-full text-black" required autocomplete="geslacht">
+                            <select name="geslacht" id="geslacht" :placeholder="$Racerboard->geslacht" class="mt-1 block w-full text-black" required autocomplete="geslacht">
                                 <option value="Man"> Man</option>
                                 <option value="Vrouw"> Vrouw</option>
                             </select>
@@ -41,12 +41,6 @@
                             <x-text-input id="geboortedatum" class="mt-1 block w-full" type="date" name="geboortedatum" :value="$Racerboard->geboortedatum" :placeholder="$Racerboard->geboortedatum" required autocomplete="geboortedatum" />
                         </div>
 
-                        <!-- Categorie -->
-                        {{-- <div class="mt-4">
-                            <x-input-label for="Categorie" :value="__('Categorie')" />
-                            <x-text-input id="Categorie" class="block mt-1 w-full" type="text" name="Categorie"
-                                :value="old('Categorie')" required autocomplete="Categorie" />
-                        </div> --}}
                         <div class="mt-4 flex items-center justify-end">
                             <x-primary-button class="ml-4">
                                 {{ __('Vervang Deelnemer Data') }}
