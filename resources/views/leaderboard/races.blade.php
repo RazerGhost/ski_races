@@ -200,13 +200,13 @@
                                     </td>
                                     {{-- TODO Add links to pages to display table with the correct format and racers :) --}}
                                     <td class="px-6 py-4">
-                                        <a href="{{''}}">
-
+                                        <a href="{{ route('Leaderboard.race', $Race->title)}}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                            {{ __('Bekijk deelnemers') }}
                                         </a>
                                     </td>
                                     <td class="px-6 py-4">
-                                        @foreach ($Race->racers as $racer)
-                                            {{ $racer }}
+                                        @foreach ($Race->racers as $Racer)
+                                            {{ $Racer }}
                                         @endforeach
                                     </td>
                                     <td class="px-6 py-4">

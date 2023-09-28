@@ -28,7 +28,6 @@ class RacesController extends Controller
             'racers' => 'required',
         ]);
 
-        //dd($request->all());
 
         Racesboard::create([
             'title' => $request->title,
