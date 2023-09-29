@@ -36,9 +36,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/leaderboard', [BoardpageViewController::class, 'index'])->name('Leaderboard.index');
     Route::post('/leaderboard', [BoardpageViewController::class, 'racerfilter'])->name('Leaderboard.racerfilter');
     Route::get('/leaderboard/reset', [BoardpageViewController::class, 'resetfilters'])->name('Leaderboard.reset');
-    // TODO Routes for the Leaderboard.races (Need to change this to the index page for better management)
     Route::get('/leaderboard/races', [BoardpageViewController::class, 'races'])->name('Leaderboard.races');
-    Route::get('/leaderboard/race/{title}',[BoardpageViewController::class, 'racepage'])->name('Leaderboard.race');
+    Route::get('/leaderboard/race/{title}', [BoardpageViewController::class, 'racepage'])->name('Leaderboard.race');
+
+    // * Routes for the Race Table
+    Route::get('/leaderboard/add/addRace', [RacesController::class, 'addRace'])->name('Racesboard.addRace');
+    Route::post('/leaderboard/addRace', [RacesController::class, 'store'])->name('Racesboard.store');
+    Route::delete('/Racesboard/{race}', [RacesController::class, 'destroy'])->name('Racesboard.destroy');
 
     // * Routes for the Racer Table
     Route::get('/leaderboard/add/addRacer', [RacerController::class, 'addracer'])->name('Racerboard.addracer');
@@ -60,11 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/leaderboard/edit/{triplelap}/editTRPLlaptimes', [TriplelapController::class, 'edit'])->name('Tripleboard.edit');
     Route::post('/leaderboard/{triplelap}/update', [TriplelapController::class, 'update'])->name('Tripleboard.update');
     Route::delete('/Tripleboard/{triplelap}', [TriplelapController::class, 'destroy'])->name('Tripleboard.destroy');
-
-    // * Routes for the Race Table
-    Route::get('/leaderboard/add/addRace', [RacesController::class, 'addRace'])->name('Racesboard.addRace');
-    Route::post('/leaderboard/addRace', [RacesController::class, 'store'])->name('Racesboard.store');
-    Route::delete('/Racesboard/{race}', [RacesController::class, 'destroy'])->name('Racesboard.destroy');
 });
 
 require __DIR__ . '/auth.php';

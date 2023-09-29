@@ -87,11 +87,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="relative py-4">
-                                <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                                    <a href="{{ route('Racerboard.addracer') }}">{{ __('Voeg een Deelnemer toe') }}</a>
-                                </button>
-                            </div>
                         </div>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <h2 class="text-lg font-semibold">{{ __('Snelste tijd') }}</h2>
@@ -121,7 +116,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($CollectedRaceTimes as $FastestLap)
+                                    @foreach ($CollectedRaceTimes2x as $FastestLap)
                                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                 {{ __($FastestLap->id) }}

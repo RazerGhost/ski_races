@@ -7,6 +7,18 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            @if (session('status'))
+                <div class="relative rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700" role="alert" id="alert">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">{{ session('status') }}.</span>
+                    <span class="absolute bottom-0 right-0 top-0 px-4 py-3">
+                        <svg class="h-6 w-6 fill-current text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <title>Close</title>
+                            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
             <!-- First Box -->
             <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -83,9 +95,6 @@
                                 <th scope="col" class="px-6 py-3">
                                     {{ __('Categorie') }}
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ __('Acties') }}
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,43 +118,16 @@
                                     <td class="px-6 py-4">
                                         {{ __($Racer->categorie) }}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <a href="{{ route('Racerboard.edit', $Racer->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
-                                            {{ __('Edit') }}
-                                        </a>
-                                        <form action="{{ route('Racerboard.destroy', $Racer->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">
-                                                {{ __('Delete') }}
-                                            </button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="relative py-4">
-                        <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                            <a href="{{ route('Racerboard.addracer') }}">{{ __('Voeg een Deelnemer toe') }}</a>
-                        </button>
-                    </div>
-                    <script>
-                        document.getElementById("toggleFilters").addEventListener("click", function() {
-                            var filterContainer = document.getElementById("filterContainer");
-                            if (filterContainer.classList.contains("hidden")) {
-                                filterContainer.classList.remove("hidden");
-                            } else {
-                                filterContainer.classList.add("hidden");
-                            }
-                        });
-                    </script>
                 </div>
             </div>
             <!-- Second Box -->
             <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h2 class="text-lg font-semibold">{{ __('Bestaande Races') }}</h2>
+                    <h2 class="text-lg font-semibold">{{ __('Snelste tijd') }}</h2>
                 </div>
                 <div class="p-6">
                     <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
@@ -155,81 +137,87 @@
                                     {{ __('id') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{ __('title') }}
+                                    {{ __('Rugnummer') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{ __('description') }}
+                                    {{ __('Eerste ronde') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{ __('format') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ __('location') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ __('date') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ __('racers') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ __('Acties') }}
+                                    {{ __('Tweede Ronde') }}
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($Races as $Race)
+                            @foreach ($Doubleboard as $FastestLap)
                                 <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                        {{ __($Race->id) }}
+                                        {{ __($FastestLap->id) }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{ __($Race->title) }}
+                                        {{ __($FastestLap->racer_id) }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ __($Race->description) }}
+                                        {{ __($FastestLap->firstlap) }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ __($Race->format) }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ __($Race->location) }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ __($Race->date) }}
-                                    </td>
-                                    {{-- TODO Add links to pages to display table with the correct format and racers :) --}}
-                                    <td class="px-6 py-4">
-                                        <a href="{{ route('Leaderboard.race', $Race->title) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
-                                            @foreach ($Race->racers as $Racer)
-                                                {{ $Racer }}
-                                            @endforeach
-                                        </a>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{-- <a href="{{ route('Racesboard.edit', $Race->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
-                                            {{ __('Edit') }}
-                                        </a> --}}
-                                        <form action="{{ route('Racesboard.destroy', $Race->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">
-                                                {{ __('Delete') }}
-                                            </button>
-                                        </form>
+                                        {{ __($FastestLap->secondlap) }}
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="relative py-4">
-                        <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                            <a href="{{ route('Racesboard.addRace') }}"> {{ __('Voeg nieuwe race toe') }} </a>
-                        </button>
-                    </div>
                 </div>
             </div>
             <!-- * ! Third Box -->
+            <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h2 class="text-lg font-semibold">{{ __('Samengevoegde tijd') }}</h2>
+                </div>
+                <div class="p-6">
+                    <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    {{ __('id') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{ __('Rugnummer') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{ __('Eerste ronde') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{ __('Tweede Ronde') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{ __('Gemiddelde tijd') }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($Doubleboard as $AverageLap)
+                                <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                                    <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                        {{ __($AverageLap->id) }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ __($AverageLap->racer_id) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ __($AverageLap->firstlap) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ __($AverageLap->secondlap) }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ __($AverageLap->averagelap) }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>

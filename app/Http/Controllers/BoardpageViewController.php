@@ -12,23 +12,24 @@ use App\Models\Tripleboard;
 
 class BoardpageViewController extends Controller
 {
+    // * This is the main page for the leaderboard
     public function index()
     {
-
         return view('leaderboard.index')
             ->with('Racerboard', Racerboard::all())
-            ->with('Doubleboard', Doubleboard::all())
-            ->with('Tripleboard', Tripleboard::all());
+            ->with('Races', Racesboard::all());
     }
-
+    // * This Returns a table with lots of data and was used for testing but was the starting point for this project
     public function races()
     {
         return view('leaderboard.races')
             ->with('Racerboard', Racerboard::all())
-            ->with('Races', Racesboard::all());
+            ->with('Races', Racesboard::all())
+            ->with('Doubleboard', Doubleboard::all())
+            ->with('Tripleboard', Tripleboard::all());
     }
 
-    // Racer Table Filter
+    // * Racer Table Filter
     public function racerfilter(Request $request): View
     {
         // Start with an empty query
@@ -61,10 +62,9 @@ class BoardpageViewController extends Controller
 
         // Get the results
         $Racerboard = $query->get();
-        $Doubleboard = Doubleboard::all();
-        $Tripleboard = Tripleboard::all();
+        $Races = Racesboard::all();
 
-        return view('Leaderboard.index', compact('Racerboard', 'Doubleboard', 'Tripleboard'));
+        return view('Leaderboard.index', compact('Racerboard', 'Races'));
     }
 
     // Filter reset
@@ -85,26 +85,32 @@ class BoardpageViewController extends Controller
         $Doubleboard = Doubleboard::all();
         $Tripleboard = Tripleboard::all();
 
-        // * Get the data from the database where the title is equal to the title in the url
+        // * Gets the data from the database where the title is equal to the title in the url
         $Race = Racesboard::where('title', $title)->first();
-        // * Get the format from the database where the title is equal to the title in the url
+        // * Gets the format from the database where the title is equal to the title in the url
         $format = $Race->format;
-        // * Get the id from the database where the title is equal to the title in the url
+        // * Gets the id from the database where the title is equal to the title in the url
         $RaceID = $Race->id;
-        // * Get the id from the database where the id is equal to the id's in the race table
+        // * Gets the id from the database where the id is equal to the id's in the race table
         $CollectedRacerIDs = Racerboard::whereIn('id', $Race->racers)->get();
-        // *
-        $CollectedRaceTimes = Doubleboard::where('race_id', $RaceID)->get();
-        //dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes);
+        // * Gets the id's from an array and finds them in the doubleboard table
+        // * and sends them to the view
+        $CollectedRaceTimes2x = Doubleboard::where('race_id', $RaceID)->get();
+        // * Does the same as the above query but for the tripleboard table
+        $CollectedRaceTimes3x = Tripleboard::where('race_id', $RaceID)->get();
+        //dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes2x);
 
         // * Switch statement to check which format is selected
         switch ($format) {
             case "3x":
-                return view('leaderboard.race.3x', compact('Race', 'CollectedRacerIDs', 'RaceID', ));
+                // ! dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes3x); //!Debugging
+                return view('leaderboard.race.3x', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes3x'));
             case "2xf":
-                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes'));
+                // ! dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes2x); //!Debugging
+                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes2x'));
             case "2xa":
-                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes'));
+                // ! dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes2x); //!Debugging
+                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes2x'));
             default:
                 echo "No format found";
         }

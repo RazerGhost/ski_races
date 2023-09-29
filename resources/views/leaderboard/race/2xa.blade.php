@@ -87,11 +87,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="relative py-4">
-                                <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                                    <a href="{{ route('Racerboard.addracer') }}">{{ __('Voeg een Deelnemer toe') }}</a>
-                                </button>
-                            </div>
                         </div>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <h2 class="text-lg font-semibold">{{ __('Snelste tijd') }}</h2>
@@ -104,9 +99,6 @@
                                             {{ __('id') }}
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            {{ __('Race_ID') }}
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
                                             {{ __('Rugnummer') }}
                                         </th>
                                         <th scope="col" class="px-6 py-3">
@@ -116,33 +108,36 @@
                                             {{ __('Tweede Ronde') }}
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            {{ __('Gemiddelde tijd') }}
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
                                             {{ __('Acties') }}
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($CollectedRaceTimes as $FastestLap)
+                                    @foreach ($CollectedRaceTimes2x as $AverageLap)
                                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                                {{ __($FastestLap->id) }}
+                                                {{ __($AverageLap->id) }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->race_id) }}
+                                                {{ __($AverageLap->racer_id) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->racer_id) }}
+                                                {{ __($AverageLap->firstlap) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->firstlap) }}
+                                                {{ __($AverageLap->secondlap) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->secondlap) }}
+                                                {{ __($AverageLap->averagelap) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                <a href="{{ route('Doubleboard.edit', $FastestLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                                <a href="{{ route('Doubleboard.edit', $AverageLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
                                                     {{ __('Edit') }}
                                                 </a>
-                                                <form action="{{ route('Doubleboard.destroy', $FastestLap->id) }}" method="POST">
+                                                <form action="{{ route('Doubleboard.destroy', $AverageLap->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">

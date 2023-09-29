@@ -22,7 +22,7 @@ class RacesController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:races',
             'description' => 'required',
             'format' => 'required',
             'location' => 'required',
@@ -39,9 +39,8 @@ class RacesController extends Controller
             'racers' => $request->racers,
         ]);
 
-        return redirect()->route('Leaderboard.races');
+        return redirect()->route('Leaderboard.index');
     }
-
 
 
     public function destroy($id): RedirectResponse
@@ -54,6 +53,6 @@ class RacesController extends Controller
         $Tripleboard->delete();
         $Races->delete();
 
-        return redirect()->route('Leaderboard.races');
+        return redirect()->route('Leaderboard.index');
     }
 }

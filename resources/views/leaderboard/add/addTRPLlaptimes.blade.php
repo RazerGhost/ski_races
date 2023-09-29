@@ -12,6 +12,17 @@
                     <form method="POST" action="{{ route('Tripleboard.store') }}">
                         @csrf
 
+                        <div class="mt-4">
+                            <x-input-label for="race_id" :value="__('Race Titel')" />
+                            <select id="race_id" name="race_id" class="mt-1 block text-black w-full" required autofocus autocomplete="race_id">
+                                <option value="">Select Race</option>
+                                @foreach ($Racesboard as $Races)
+                                    <option value="{{ $Races->id }}">{{ $Races->title }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('race_id')" class="mt-2" />
+                        </div>
+
                         <!-- Racer Rugnummer -->
                         <div class="mt-4">
                             <x-input-label for="racer_id" :value="__('racer_id')" />
