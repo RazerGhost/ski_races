@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Racerboard;
+use App\Models\Doubleboard;
+use App\Models\Tripleboard;
 use App\Models\Racesboard;
 
 class RacesController extends Controller
@@ -45,6 +47,11 @@ class RacesController extends Controller
     public function destroy($id): RedirectResponse
     {
         $Races = Racesboard::find($id);
+        $Doubleboard = Doubleboard::where('race_id', $id);
+        $Tripleboard = Tripleboard::where('race_id', $id);
+
+        $Doubleboard->delete();
+        $Tripleboard->delete();
         $Races->delete();
 
         return redirect()->route('Leaderboard.races');

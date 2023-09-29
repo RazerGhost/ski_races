@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Racesboard extends Model
 {
     protected $table = 'races';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'description',

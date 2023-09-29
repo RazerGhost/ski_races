@@ -81,26 +81,30 @@ class BoardpageViewController extends Controller
     {
         // * Get all the data from the database
         $Racerboard = Racerboard::all();
+        $Racesboard = Racesboard::all();
         $Doubleboard = Doubleboard::all();
         $Tripleboard = Tripleboard::all();
 
         // * Get the data from the database where the title is equal to the title in the url
         $Race = Racesboard::where('title', $title)->first();
         // * Get the format from the database where the title is equal to the title in the url
-        $format = Racesboard::where('title', $title)->first()->format;
+        $format = $Race->format;
+        // * Get the id from the database where the title is equal to the title in the url
+        $RaceID = $Race->id;
         // * Get the id from the database where the id is equal to the id's in the race table
-        $Racerids = Racerboard::whereIn('id', $Race->racers)->get();
+        $CollectedRacerIDs = Racerboard::whereIn('id', $Race->racers)->get();
+        // *
+        $CollectedRaceTimes = Doubleboard::where('race_id', $RaceID)->get();
+        //dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes);
 
+        // * Switch statement to check which format is selected
         switch ($format) {
             case "3x":
-                // dd( $Race, $Racerboard, $Tripleboard, $format );
-                return view('leaderboard.race.3x', compact('Race', 'Racerids', 'Tripleboard'));
+                return view('leaderboard.race.3x', compact('Race', 'CollectedRacerIDs', 'RaceID', ));
             case "2xf":
-                // dd( $Race, $Racerboard, $Doubleboard, $format );
-                return view('leaderboard.race.2xf', compact('Race', 'Racerboard', 'Doubleboard'));
+                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes'));
             case "2xa":
-                // dd( $Race, $Racerboard, $Doubleboard, $format );
-                return view('leaderboard.race.2xf', compact('Race', 'Racerboard', 'Doubleboard'));
+                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes'));
             default:
                 echo "No format found";
         }

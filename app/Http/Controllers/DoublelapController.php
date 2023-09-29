@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use App\Models\Doubleboard;
 use App\Models\Racerboard;
+use App\Models\Racesboard;
+use App\Models\Doubleboard;
 
 class DoublelapController extends Controller
 {
-    public function addDBLlaptimes(): View
+    public function addDBLlaptimes($title): View
     {
         $Racerboard = Racerboard::all();
-        return view('leaderboard.add.addDBLlaptimes', compact('Racerboard'));
+        $Racesboard = Racesboard::all();
+        $Race = Racesboard::where('title', $title)->first();
+        $CollectedRacerIDs = Racerboard::whereIn('id', $Race->racers)->get();
+        return view('leaderboard.add.addDBLlaptimes', compact('CollectedRacerIDs', 'Racesboard'));
     }
 
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'racer_id' => 'required|exists:racers,id',
+            'race_id' => 'required',
             'firstlap' => [
                 'required' => 'required',
                 'max' => 'max:5,5',
@@ -36,6 +41,7 @@ class DoublelapController extends Controller
 
         Doubleboard::create([
             'racer_id' => $request->racer_id,
+            'race_id' => $request->race_id,
             'firstlap' => $request->firstlap,
             'secondlap' => $request->secondlap,
             'averagelap' => $AverageLap,
@@ -46,9 +52,10 @@ class DoublelapController extends Controller
 
     public function edit($id): View
     {
-        $Racerboard = Racerboard::all();
         $Doubleboard = Doubleboard::find($id);
-        return view('Leaderboard.edit.editDBLlaptimes', compact('Doubleboard', 'Racerboard'));
+        $Racerboard = Racerboard::all();
+        $Racesboard = Racesboard::all();
+        return view('Leaderboard.edit.editDBLlaptimes', compact('Doubleboard', 'Racerboard', 'Racesboard'));
     }
 
     public function update(Request $request, $id): RedirectResponse

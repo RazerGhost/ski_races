@@ -30,14 +30,18 @@ class RacerController extends Controller
         $age = $this->calculateAge($birthdate);
         $category = $this->determineCategory($age);
 
-        Racerboard::create([
-            'voornaam' => $request->voornaam,
-            'achternaam' => $request->achternaam,
-            'geslacht' => $request->geslacht,
-            'geboortedatum' => $request->geboortedatum,
-            'categorie' => $category,
-        ]);
-
+        if ($category == 'Te oud') {
+            echo '<script>alert("Deze persoon is te oud om mee te doen aan de wedstrijden")</script>';
+            return redirect()->route('Leaderboard.index')->with('status', 'Je bent te oud om mee te doen aan de wedstrijden');
+        } else {
+            Racerboard::create([
+                'voornaam' => $request->voornaam,
+                'achternaam' => $request->achternaam,
+                'geslacht' => $request->geslacht,
+                'geboortedatum' => $request->geboortedatum,
+                'categorie' => $category,
+            ]);
+        }
         return redirect()->route('Leaderboard.index');
     }
 
@@ -66,6 +70,10 @@ class RacerController extends Controller
         $birthdate = $request->geboortedatum;
         $age = $this->calculateAge($birthdate);
         $category = $this->determineCategory($age);
+
+        if ($category == 'Te oud') {
+            echo '<script>alert("Deze persoon is te oud om mee te doen aan de wedstrijden")</script>';
+        }
 
         // Update the record with the new data
         $Racerboard->update([

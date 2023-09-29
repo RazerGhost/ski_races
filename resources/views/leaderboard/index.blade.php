@@ -7,6 +7,18 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            @if (session('status'))
+                <div class="relative rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700" role="alert" id="alert">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">{{ session('status') }}.</span>
+                    <span class="absolute bottom-0 right-0 top-0 px-4 py-3">
+                        <svg class="h-6 w-6 fill-current text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <title>Close</title>
+                            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
             <!-- First Box -->
             <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -130,16 +142,6 @@
                             <a href="{{ route('Racerboard.addracer') }}">{{ __('Voeg een Deelnemer toe') }}</a>
                         </button>
                     </div>
-                    <script>
-                        document.getElementById("toggleFilters").addEventListener("click", function() {
-                            var filterContainer = document.getElementById("filterContainer");
-                            if (filterContainer.classList.contains("hidden")) {
-                                filterContainer.classList.remove("hidden");
-                            } else {
-                                filterContainer.classList.add("hidden");
-                            }
-                        });
-                    </script>
                 </div>
             </div>
             <!-- Second Box -->
@@ -201,7 +203,7 @@
                     </table>
                     <div class="relative py-4">
                         <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                            <a href="{{ route('Doubleboard.addDBLlaptimes') }}"> {{ __('Voeg nieuwe tijden toe') }} </a>
+                            <a href="{{ route('Doubleboard.addDBLlaptimes', $Race->title) }}"> {{ __('Voeg nieuwe tijden toe') }} </a>
                         </button>
                     </div>
                 </div>
@@ -278,4 +280,19 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById("toggleFilters").addEventListener("click", function() {
+            var filterContainer = document.getElementById("filterContainer");
+            if (filterContainer.classList.contains("hidden")) {
+                filterContainer.classList.remove("hidden");
+            } else {
+                filterContainer.classList.add("hidden");
+            }
+        });
+
+        document.getElementById("alert").addEventListener("click", function() {
+            var alert = document.getElementById("alert");
+            alert.classList.add("hidden");
+        });
+    </script>
 </x-app-layout>
