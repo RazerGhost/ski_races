@@ -10,14 +10,14 @@
             <!-- First Box -->
             <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6">
-                    <div class="gap-10 p-6 text-gray-900 dark:text-gray-100">
-                        <p class="text-sm font-semibold">{{ __($Race->date) }}</p>
-                        <h2 class="text-lg font-semibold">{{ __($Race->title) }}</h2>
-                        <p class="text-l font-semibold">Format: {{ __($Race->format) }} Rondes</p>
-                        <p class="text-l font-semibold">{{ __($Race->description) }}</p>
-                        <p class="text-l font-semibold">{{ __($Race->location) }}</p>
-                    </div>
                     <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                        <div class="gap-10 p-6 text-gray-900 dark:text-gray-100">
+                            <p class="text-sm font-semibold">{{ __($Race->date) }}</p>
+                            <h2 class="text-lg font-semibold">{{ __($Race->title) }}</h2>
+                            <p class="text-l font-semibold">Format: {{ __($Race->format) }} Rondes</p>
+                            <p class="text-l font-semibold">{{ __($Race->description) }}</p>
+                            <p class="text-l font-semibold">{{ __($Race->location) }}</p>
+                        </div>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <div class="flex items-center justify-between">
                                 <h2 class="text-lg font-semibold">{{ __('Deelnemers table') }}</h2>
