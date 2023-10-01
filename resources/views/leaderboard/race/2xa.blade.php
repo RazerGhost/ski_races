@@ -125,13 +125,13 @@
                                                 {{ __($AverageLap->racer_id) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($Averagelap->firstlap) }}
+                                                {{ __($AverageLap->firstlap) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($Averagelap->secondlap) }}
+                                                {{ __($AverageLap->secondlap) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($Averagelap->averagelap) }}
+                                                {{ __($AverageLap->averagelap) }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <a href="{{ route('Doubleboard.edit', $AverageLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
