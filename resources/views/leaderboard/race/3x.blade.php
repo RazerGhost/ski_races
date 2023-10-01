@@ -1,29 +1,3 @@
-<?php
-foreach ($CollectedRaceTimes3x as $Triplelap) {
-    $firstlap = $Triplelap->firstlap;
-    $secondlap = $Triplelap->secondlap;
-    $thirdlap = $Triplelap->thirdlap;
-}
-if ($firstlap == 0.00) {
-    $firstlap = 'DNF';
-} else {
-    $firstlap = $firstlap;
-}
-
-if ($secondlap == 0.00) {
-    $secondlap = 'DNF';
-} else {
-    $secondlap = $secondlap;
-}
-
-if ($thirdlap == 0.00) {
-    $thirdlap = 'DNF';
-} else {
-    $thirdlap = $thirdlap;
-}
-
-//dd($secondlap, $firstlap, $thirdlap)
-?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -36,8 +10,8 @@ if ($thirdlap == 0.00) {
             <!-- First Box -->
             <div class="mb-8 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6">
-                    <div class="p-6 gap-10 text-gray-900 dark:text-gray-100">
-                        <p class=" text-sm font-semibold">{{ __($Race->date) }}</p>
+                    <div class="gap-10 p-6 text-gray-900 dark:text-gray-100">
+                        <p class="text-sm font-semibold">{{ __($Race->date) }}</p>
                         <h2 class="text-lg font-semibold">{{ __($Race->title) }}</h2>
                         <p class="text-l font-semibold">Format: {{ __($Race->format) }} Rondes</p>
                         <p class="text-l font-semibold">{{ __($Race->description) }}</p>
@@ -77,7 +51,7 @@ if ($thirdlap == 0.00) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($CollectedRacerIDs as $Racer )
+                                    @foreach ($CollectedRacerIDs as $Racer)
                                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                 {{ __($Racer->id) }}
@@ -158,13 +132,13 @@ if ($thirdlap == 0.00) {
                                             {{ __($Triplelap->racer_id) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($firstlap) }}
+                                            {{ __($Triplelap->firstlap) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($secondlap) }}
+                                            {{ __($Triplelap->secondlap) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($thirdlap) }}
+                                            {{ __($Triplelap->thirdlap) }}
                                         </td>
                                         <td class="px-6 py-4">
                                             <a href="{{ route('Tripleboard.edit', $Triplelap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
