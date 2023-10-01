@@ -9,6 +9,7 @@ To recreate this Laravel repository, you can follow these general steps:
 
     cd ski_races
     composer install
+    npm install
 
     ```
 
@@ -39,16 +40,16 @@ To recreate this Laravel repository, you can follow these general steps:
     ```bash
 
     php artisan migrate
-    npm install
-    npm run dev
 
     ```
 
     -   **Run the Application:** Start the Laravel development server to run the application locally.
+    -   it is best to use two seperate terminals since you need to run both the artisan command and npm command since one will not work without the other.
 
     ```bash
 
     php artisan serve
+    npm run dev
 
     ```
 
