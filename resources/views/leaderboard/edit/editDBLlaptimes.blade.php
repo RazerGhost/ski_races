@@ -23,14 +23,14 @@
                             <x-input-error :messages="$errors->get('racer_id')" class="mt-2" />
                         </div>
 
-                        <!-- firstlap -->
+                        <!-- First Lap -->
                         <div class="mt-4">
                             <x-input-label for="firstlap" :value="__('firstlap')" />
                             <x-text-input id="firstlap" class="mt-1 block w-full" type="text" name="firstlap" :value="$Doubleboard->firstlap" :placeholder="$Doubleboard->firstlap" required autocomplete="firstlap" />
                             <x-input-error :messages="$errors->get('firstlap')" class="mt-2" />
                         </div>
 
-                        <!-- secondlap -->
+                        <!-- Second Lap -->
                         <div class="mt-4">
                             <x-input-label for="secondlap" :value="__('secondlap')" />
                             <x-text-input id="secondlap" class="mt-1 block w-full" type="text" name="secondlap" :value="$Doubleboard->secondlap" :placeholder="$Doubleboard->secondlap" required autocomplete="secondlap" />

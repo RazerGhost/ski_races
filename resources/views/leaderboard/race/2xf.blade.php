@@ -128,10 +128,18 @@
                                                 {{ __($FastestLap->racer_id) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->firstlap) }}
+                                                @if ($FastestLap->firstlap == 0)
+                                                    {{ __('DNF') }}
+                                                @else
+                                                    {{ __($FastestLap->firstlap) }}
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->secondlap) }}
+                                                @if ($FastestLap->secondlap == 0)
+                                                    {{ __('DNF') }}
+                                                @else
+                                                    {{ __($FastestLap->secondlap) }}
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4">
                                                 <a href="{{ route('Doubleboard.edit', $FastestLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">

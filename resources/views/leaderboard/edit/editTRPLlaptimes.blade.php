@@ -10,9 +10,9 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('Tripleboard.update', ['racer' => $Tripleboard->id]) }}">
+                    <form method="POST" action="{{ route('Tripleboard.update', ['triplelap' => $Tripleboard->id]) }}">
                         @csrf
-                        <!-- Voornaam -->
+                        <!-- Racer Naam -->
                         <div class="mt-4">
                             <x-input-label for="racer_id" :value="__('racer_id')" />
                             <select id="racer_id" name="racer_id" class="mt-1 block w-full text-black" required autofocus autocomplete="racer_id">
@@ -24,21 +24,21 @@
                             <x-input-error :messages="$errors->get('racer_id')" class="mt-2" />
                         </div>
 
-                        <!-- firstlap -->
+                        <!-- First Lap -->
                         <div class="mt-4">
                             <x-input-label for="firstlap" :value="__('firstlap')" />
                             <x-text-input id="firstlap" class="mt-1 block w-full" type="text" name="firstlap" :value="$Tripleboard->firstlap" :placeholder="$Tripleboard->firstlap" required autocomplete="firstlap" />
                             <x-input-error :messages="$errors->get('firstlap')" class="mt-2" />
                         </div>
 
-                        <!-- secondlap -->
+                        <!-- Second Lap -->
                         <div class="mt-4">
                             <x-input-label for="secondlap" :value="__('secondlap')" />
                             <x-text-input id="secondlap" class="mt-1 block w-full" type="text" name="secondlap" :value="$Tripleboard->secondlap" :placeholder="$Tripleboard->secondlap" required autocomplete="secondlap" />
                             <x-input-error :messages="$errors->get('secondlap')" class="mt-2" />
                         </div>
 
-                        <!-- thirdlap -->
+                        <!-- Third Lap -->
                         <div class="mt-4">
                             <x-input-label for="thirdlap" :value="__('thirdlap')" />
                             <x-text-input id="thirdlap" class="mt-1 block w-full" type="text" name="thirdlap" :value="$Tripleboard->thirdlap" :placeholder="$Tripleboard->thirdlap" required autocomplete="thirdlap" />
