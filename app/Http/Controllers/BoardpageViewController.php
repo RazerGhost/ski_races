@@ -77,7 +77,7 @@ class BoardpageViewController extends Controller
         return redirect()->route('Leaderboard.index');
     }
 
-    public function racepage($title)
+    public function racepage($id)
     {
         // * Get all the data from the database
         $Racerboard = Racerboard::all();
@@ -85,11 +85,12 @@ class BoardpageViewController extends Controller
         $Doubleboard = Doubleboard::all();
         $Tripleboard = Tripleboard::all();
 
-        // * Gets the data from the database where the title is equal to the title in the url
-        $Race = Racesboard::where('title', $title)->first();
-        // * Gets the format from the database where the title is equal to the title in the url
+        //dd($id);
+        // * Gets the data from the database where the id is equal to the id in the url
+        $Race = Racesboard::where('id', $id)->first();
+        // * Gets the format from the database where the id is equal to the id in the url
         $format = $Race->format;
-        // * Gets the id from the database where the title is equal to the title in the url
+        // * Gets the id from the database where the id is equal to the id in the url
         $RaceID = $Race->id;
         // * Gets the id from the database where the id is equal to the id's in the race table
         $CollectedRacerIDs = Racerboard::whereIn('id', $Race->racers)->get();

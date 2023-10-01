@@ -142,7 +142,7 @@
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4">
-                                                <a href="{{ route('Doubleboard.edit', $FastestLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                                <a href="{{ route('Doubleboard.edit', ['id' => $FastestLap->id, 'racer_id' => $FastestLap->racer_id]) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
                                                     {{ __('Edit') }}
                                                 </a>
                                                 <form action="{{ route('Doubleboard.destroy', $FastestLap->id) }}" method="POST">
@@ -159,7 +159,7 @@
                             </table>
                             <div class="relative py-4">
                                 <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                                    <a href="{{ route('Doubleboard.addDBLlaptimes', $Race->title) }}"> {{ __('Voeg nieuwe tijden toe') }} </a>
+                                    <a href="{{ route('Doubleboard.addDBLlaptimes', $Race->id) }}"> {{ __('Voeg nieuwe tijden toe') }} </a>
                                 </button>
                             </div>
                         </div>

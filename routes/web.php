@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/leaderboard', [BoardpageViewController::class, 'racerfilter'])->name('Leaderboard.racerfilter');
     Route::get('/leaderboard/reset', [BoardpageViewController::class, 'resetfilters'])->name('Leaderboard.reset');
     Route::get('/leaderboard/races', [BoardpageViewController::class, 'races'])->name('Leaderboard.races');
-    Route::get('/leaderboard/race/{title}', [BoardpageViewController::class, 'racepage'])->name('Leaderboard.race');
+    Route::get('/leaderboard/race/{id}', [BoardpageViewController::class, 'racepage'])->name('Leaderboard.race');
 
     // * Routes for the Race Table
     Route::get('/leaderboard/add/addRace', [RacesController::class, 'addRace'])->name('Racesboard.addRace');
@@ -52,10 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/Racerboard/{racer}', [RacerController::class, 'destroy'])->name('Racerboard.destroy');
 
     // * Routes for the Doublelap Table
-    Route::get('/leaderboard/add/{title}/addDBLlaptimes', [DoublelapController::class, 'addDBLlaptimes'])->name('Doubleboard.addDBLlaptimes');
-    Route::post('/leaderboard/addDBLlaptimes', [DoublelapController::class, 'store'])->name('Doubleboard.store');
-    Route::get('/leaderboard/edit/{doublelap}/editDBLlaptimes', [DoublelapController::class, 'edit'])->name('Doubleboard.edit');
-    Route::post('/leaderboard/{doublelap}/update', [DoublelapController::class, 'update'])->name('Doubleboard.update');
+    Route::get('/leaderboard/add/{id}/addDBLlaptimes', [DoublelapController::class, 'addDBLlaptimes'])->name('Doubleboard.addDBLlaptimes');
+    Route::post('/leaderboard/{id}/addDBLlaptimes', [DoublelapController::class, 'store'])->name('Doubleboard.store');
+    Route::get('/leaderboard/edit/{id}/{racer_id}/editDBLlaptimes', [DoublelapController::class, 'edit'])->name('Doubleboard.edit');
+    Route::post('/leaderboard/{id}/{racer_id}/update', [DoublelapController::class, 'update'])->name('Doubleboard.update');
     Route::delete('/Doubleboard/{doublelap}', [DoublelapController::class, 'destroy'])->name('Doubleboard.destroy');
 
     // * Routes for the Triplelap Table
