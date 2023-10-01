@@ -1,3 +1,22 @@
+<?php
+foreach ($CollectedRaceTimes2x as $FastestLap) {
+    $firstlap = $FastestLap->firstlap;
+    $secondlap = $FastestLap->secondlap;
+}
+if ($firstlap == 0.00) {
+    $firstlap = 'DNF';
+} else {
+    $firstlap = $firstlap;
+}
+
+if ($secondlap == 0.00) {
+    $secondlap = 'DNF';
+} else {
+    $secondlap = $secondlap;
+}
+
+//dd($secondlap, $firstlap)
+?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -128,10 +147,10 @@
                                                 {{ __($FastestLap->racer_id) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->firstlap) }}
+                                                {{ __($firstlap) }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ __($FastestLap->secondlap) }}
+                                                {{ __($secondlap) }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <a href="{{ route('Doubleboard.edit', $FastestLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">

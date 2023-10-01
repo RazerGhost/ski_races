@@ -1,3 +1,29 @@
+<?php
+foreach ($CollectedRaceTimes3x as $Triplelap) {
+    $firstlap = $Triplelap->firstlap;
+    $secondlap = $Triplelap->secondlap;
+    $thirdlap = $Triplelap->thirdlap;
+}
+if ($firstlap == 0.00) {
+    $firstlap = 'DNF';
+} else {
+    $firstlap = $firstlap;
+}
+
+if ($secondlap == 0.00) {
+    $secondlap = 'DNF';
+} else {
+    $secondlap = $secondlap;
+}
+
+if ($thirdlap == 0.00) {
+    $thirdlap = 'DNF';
+} else {
+    $thirdlap = $thirdlap;
+}
+
+//dd($secondlap, $firstlap, $thirdlap)
+?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -112,33 +138,39 @@
                                         {{ __('Tweede Ronde') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        {{ __('Derde Ronde') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         {{ __('Acties') }}
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($CollectedRaceTimes3x as $FastestLap)
+                                @foreach ($CollectedRaceTimes3x as $Triplelap)
                                     <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                         <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                            {{ __($FastestLap->id) }}
+                                            {{ __($Triplelap->id) }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{ __($FastestLap->race_id) }}
+                                            {{ __($Triplelap->race_id) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($FastestLap->racer_id) }}
+                                            {{ __($Triplelap->racer_id) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($FastestLap->firstlap) }}
+                                            {{ __($firstlap) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($FastestLap->secondlap) }}
+                                            {{ __($secondlap) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <a href="{{ route('Tripleboard.edit', $FastestLap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                            {{ __($thirdlap) }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <a href="{{ route('Tripleboard.edit', $Triplelap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
                                                 {{ __('Edit') }}
                                             </a>
-                                            <form action="{{ route('Tripleboard.destroy', $FastestLap->id) }}" method="POST">
+                                            <form action="{{ route('Tripleboard.destroy', $Triplelap->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">

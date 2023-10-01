@@ -110,7 +110,7 @@ class BoardpageViewController extends Controller
                 return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes2x'));
             case "2xa":
                 // ! dd($Race, $format, $CollectedRacerIDs, $RaceID, $CollectedRaceTimes2x); //!Debugging
-                return view('leaderboard.race.2xf', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes2x'));
+                return view('leaderboard.race.2xa', compact('Race', 'CollectedRacerIDs', 'RaceID', 'CollectedRaceTimes2x'));
             default:
                 echo "No format found";
         }
