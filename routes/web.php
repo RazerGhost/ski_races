@@ -59,10 +59,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/Doubleboard/{doublelap}', [DoublelapController::class, 'destroy'])->name('Doubleboard.destroy');
 
     // * Routes for the Triplelap Table
-    Route::get('/leaderboard/add/addTRPLlaptimes', [TriplelapController::class, 'addTRPLlaptimes'])->name('Tripleboard.addTRPLlaptimes');
-    Route::post('/leaderboard/addTRPLlaptimes', [TriplelapController::class, 'store'])->name('Tripleboard.store');
-    Route::get('/leaderboard/edit/{triplelap}/editTRPLlaptimes', [TriplelapController::class, 'edit'])->name('Tripleboard.edit');
-    Route::post('/leaderboard/{triplelap}/update', [TriplelapController::class, 'update'])->name('Tripleboard.update');
+    Route::get('/leaderboard/add/{id}/addTRPLlaptimes', [TriplelapController::class, 'addTRPLlaptimes'])->name('Tripleboard.addTRPLlaptimes');
+    Route::post('/leaderboard/{id}/addTRPLlaptimes', [TriplelapController::class, 'store'])->name('Tripleboard.store');
+    Route::get('/leaderboard/edit/{id}/{racer_id}/editTRPLlaptimes', [TriplelapController::class, 'edit'])->name('Tripleboard.edit');
+    Route::post('/leaderboard/{id}/{racer_id}/update', [TriplelapController::class, 'update'])->name('Tripleboard.update');
     Route::delete('/Tripleboard/{triplelap}', [TriplelapController::class, 'destroy'])->name('Tripleboard.destroy');
 });
 

@@ -120,43 +120,43 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($CollectedRaceTimes3x as $Triplelap)
+                                @foreach ($CollectedRaceTimes3x as $TripleLap)
                                     <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                         <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                            {{ __($Triplelap->id) }}
+                                            {{ __($TripleLap->id) }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{ __($Triplelap->race_id) }}
+                                            {{ __($TripleLap->race_id) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ __($Triplelap->racer_id) }}
+                                            {{ __($TripleLap->racer_id) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            @if ($Triplelap->firstlap == 0)
+                                            @if ($TripleLap->firstlap == 0)
                                                 {{ __('DNF') }}
                                             @else
-                                                {{ __($Triplelap->firstlap) }}
+                                                {{ __($TripleLap->firstlap) }}
                                             @endif
                                         </td>
                                         <td class="px-6 py-4">
-                                            @if ($Triplelap->secondlap == 0)
+                                            @if ($TripleLap->secondlap == 0)
                                                 {{ __('DNF') }}
                                             @else
-                                                {{ __($Triplelap->secondlap) }}
+                                                {{ __($TripleLap->secondlap) }}
                                             @endif
                                         </td>
                                         <td class="px-6 py-4">
-                                            @if ($Triplelap->thirdlap == 0)
+                                            @if ($TripleLap->thirdlap == 0)
                                                 {{ __('DNF') }}
                                             @else
-                                                {{ __($Triplelap->thirdlap) }}
+                                                {{ __($TripleLap->thirdlap) }}
                                             @endif
                                         </td>
                                         <td class="px-6 py-4">
-                                            <a href="{{ route('Tripleboard.edit', $Triplelap->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                            <a href="{{ route('Tripleboard.edit', ['id' => $TripleLap->id, 'racer_id' => $TripleLap->racer_id]) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
                                                 {{ __('Edit') }}
                                             </a>
-                                            <form action="{{ route('Tripleboard.destroy', $Triplelap->id) }}" method="POST">
+                                            <form action="{{ route('Tripleboard.destroy', $TripleLap->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">
