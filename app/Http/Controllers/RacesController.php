@@ -39,8 +39,6 @@ class RacesController extends Controller
             'racers' => $request->racers,
         ]);
 
-        dd($request->all());
-
         return redirect()->route('Leaderboard.index');
     }
 

@@ -126,18 +126,11 @@ class RacerController extends Controller
         // * Defines the Racers Variable as the row in the 'Racesboard' model that matches the given id
         $Racers = $Racesboard->racers;
         // * Remove the racer from the array
-        $Racers = array_map('strval', $Racers);
         $UpdatedRacers = array_diff($Racers, [$racer]);
-
-        $UpdatedRacers = array_map('strval', $UpdatedRacers);
-
-        // * Update the 'racers' attribute in the 'Racesboard' model
+        // * Re-index the array
+        $UpdatedRacers = array_values($UpdatedRacers);
+        // * Update the array in the database
         $Racesboard->racers = $UpdatedRacers;
-
-        // * Remove the empty values from the array
-
-        dd($Racers, $UpdatedRacers, $Racesboard->racers);
-
         // * Save the changes
         $Racesboard->save();
         // * Finds the row in Doubleboard that matches the given racer
