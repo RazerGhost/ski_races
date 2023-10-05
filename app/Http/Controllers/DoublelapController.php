@@ -25,7 +25,6 @@ class DoublelapController extends Controller
     {
         $request->validate([
             'racer_id' => 'required|exists:racers,id',
-            //'race_id' => 'required',
             'firstlap' => [
                 'required' => 'required',
                 'max' => 'max:5,5',

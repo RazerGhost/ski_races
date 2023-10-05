@@ -25,7 +25,6 @@ class TriplelapController extends Controller
     {
         $request->validate([
             'racer_id' => 'required|exists:racers,id',
-            //'race_id' => 'required',
             'firstlap' => [
                 'required' => 'required',
                 'max' => 'max:5,5',
@@ -42,7 +41,7 @@ class TriplelapController extends Controller
 
         Tripleboard::create([
             'racer_id' => $request->racer_id,
-            'race_id' => $request->$id,
+            'race_id' => $id,
             'firstlap' => $request->firstlap,
             'secondlap' => $request->secondlap,
             'thirdlap' => $request->thirdlap,

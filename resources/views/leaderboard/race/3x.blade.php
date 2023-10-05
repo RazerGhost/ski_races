@@ -75,7 +75,7 @@
                                                 <a href="{{ route('Racerboard.edit', $Racer->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
                                                     {{ __('Edit') }}
                                                 </a>
-                                                <form action="{{ route('Racerboard.destroy', ['id' => $Race->id,'racer' => $Racer->id]) }}" method="POST">
+                                                <form action="{{ route('Racesboard.destroyracer', ['id' => $Race->id,'racer' => $Racer->id]) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">
@@ -170,7 +170,7 @@
                         </table>
                         <div class="relative py-4">
                             <button class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:border-blue-300 focus:outline-none focus:ring">
-                                <a href="{{ route('Tripleboard.addTRPLlaptimes', $Race->title) }}"> {{ __('Voeg nieuwe tijden toe') }} </a>
+                                <a href="{{ route('Tripleboard.addTRPLlaptimes', ['id' => $Race->id, 'title' => $Race->title]) }}"> {{ __('Voeg nieuwe tijden toe') }} </a>
                             </button>
                         </div>
                     </div>

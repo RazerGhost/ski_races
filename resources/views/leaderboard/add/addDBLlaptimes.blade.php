@@ -11,7 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('Doubleboard.store', ['id' => $Race->id]) }}">
                         @csrf
-
                         <!-- Racer Rugnummer -->
                         <div class="mt-4">
                             <x-input-label for="racer_id" :value="__('Deelnemer')" />
