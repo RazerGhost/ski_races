@@ -117,32 +117,4 @@ class RacerController extends Controller
         }
     }
 
-    public function destroy($id, $racer): RedirectResponse
-    {
-        $Racerboard = Racerboard::find($racer);
-
-        // * Find the record with the given id
-        $Racesboard = Racesboard::find($id);
-        // * Defines the Racers Variable as the row in the 'Racesboard' model that matches the given id
-        $Racers = $Racesboard->racers;
-        // * Remove the racer from the array
-        $UpdatedRacers = array_diff($Racers, [$racer]);
-        // * Re-index the array
-        $UpdatedRacers = array_values($UpdatedRacers);
-        // * Update the array in the database
-        $Racesboard->racers = $UpdatedRacers;
-        // * Save the changes
-        $Racesboard->save();
-        // * Finds the row in Doubleboard that matches the given racer
-        $Doubleboard = Doubleboard::where('racer_id', $racer);
-        // * Finds the row in Tripleboard that matches the given racer
-        $Tripleboard = Tripleboard::where('racer_id', $racer);
-
-        // * Delete the records
-        $Doubleboard->delete();
-        $Tripleboard->delete();
-        $Racerboard->delete();
-
-        return redirect()->route('Leaderboard.race', $id);
-    }
 }
