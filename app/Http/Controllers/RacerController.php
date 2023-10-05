@@ -121,16 +121,21 @@ class RacerController extends Controller
     {
         $Racerboard = Racerboard::find($racer);
 
+        // * Find the record with the given id
         $Racesboard = Racesboard::find($id);
+        // * Defines the Racers Variable as the row in the 'Racesboard' model that matches the given id
         $Racers = $Racesboard->racers;
         $UpdatedRacers = array_diff($Racers, [$racer]);
-        $Racesboard = $UpdatedRacers;
+
+        // * Update the 'racers' attribute in the 'Racesboard' model
+        $Racesboard->racers = $UpdatedRacers;
+        // * Save the changes
         $Racesboard->save();
 
         $Doubleboard = Doubleboard::where('racer_id', $racer);
         $Tripleboard = Tripleboard::where('racer_id', $racer);
 
-        dd($Racesboard, $Racerboard, $Doubleboard, $Tripleboard);
+        // ...
 
         $Doubleboard->delete();
         $Tripleboard->delete();
