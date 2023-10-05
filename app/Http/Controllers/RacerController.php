@@ -125,22 +125,31 @@ class RacerController extends Controller
         $Racesboard = Racesboard::find($id);
         // * Defines the Racers Variable as the row in the 'Racesboard' model that matches the given id
         $Racers = $Racesboard->racers;
+        // * Remove the racer from the array
+        $Racers = array_map('strval', $Racers);
         $UpdatedRacers = array_diff($Racers, [$racer]);
+
+        $UpdatedRacers = array_map('strval', $UpdatedRacers);
 
         // * Update the 'racers' attribute in the 'Racesboard' model
         $Racesboard->racers = $UpdatedRacers;
+
+        // * Remove the empty values from the array
+
+        dd($Racers, $UpdatedRacers, $Racesboard->racers);
+
         // * Save the changes
         $Racesboard->save();
-
+        // * Finds the row in Doubleboard that matches the given racer
         $Doubleboard = Doubleboard::where('racer_id', $racer);
+        // * Finds the row in Tripleboard that matches the given racer
         $Tripleboard = Tripleboard::where('racer_id', $racer);
 
-        // ...
-
+        // * Delete the records
         $Doubleboard->delete();
         $Tripleboard->delete();
         $Racerboard->delete();
 
-        return redirect()->route('Leaderboard.index');
+        return redirect()->route('Leaderboard.race', $id);
     }
 }
