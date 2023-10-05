@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/leaderboard/addRacer', [RacerController::class, 'store'])->name('Racerboard.store');
     Route::get('/leaderboard/edit/{racer}/editRacer', [RacerController::class, 'edit'])->name('Racerboard.edit');
     Route::post('/leaderboard/{racer}/update', [RacerController::class, 'update'])->name('Racerboard.update');
-    Route::delete('/Racerboard/{racer}', [RacerController::class, 'destroy'])->name('Racerboard.destroy');
+    Route::delete('/leaderboard/race/{id}/{racer}', [RacerController::class, 'destroy'])->name('Racerboard.destroy');
 
     // * Routes for the Doublelap Table
     Route::get('/leaderboard/add/{id}/addDBLlaptimes', [DoublelapController::class, 'addDBLlaptimes'])->name('Doubleboard.addDBLlaptimes');

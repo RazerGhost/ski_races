@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Carbon\Carbon;
 use App\Models\Racerboard;
+use App\Models\Racesboard;
 use App\Models\Doubleboard;
 use App\Models\Tripleboard;
 
@@ -116,11 +117,20 @@ class RacerController extends Controller
         }
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($id, $racer): RedirectResponse
     {
-        $Racerboard = Racerboard::find($id);
-        $Doubleboard = Doubleboard::where('racer_id', $id);
-        $Tripleboard = Tripleboard::where('racer_id', $id);
+        $Racerboard = Racerboard::find($racer);
+
+        $Racesboard = Racesboard::find($id);
+        $Racers = $Racesboard->racers;
+        $UpdatedRacers = array_diff($Racers, [$racer]);
+        $Racesboard = $UpdatedRacers;
+        $Racesboard->save();
+
+        $Doubleboard = Doubleboard::where('racer_id', $racer);
+        $Tripleboard = Tripleboard::where('racer_id', $racer);
+
+        dd($Racesboard, $Racerboard, $Doubleboard, $Tripleboard);
 
         $Doubleboard->delete();
         $Tripleboard->delete();
